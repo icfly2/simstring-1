@@ -2,10 +2,10 @@ import math
 from .base import BaseMeasure
 
 class CosineMeasure(BaseMeasure):
-    def min_feature_size(self, query_size, alpha):
+    def min_feature_size(self, query_size: int, alpha: float) -> int:
         return int(math.ceil(alpha * alpha * query_size))
 
-    def max_feature_size(self, query_size, alpha):
+    def max_feature_size(self, query_size: int, alpha: float)-> int:
         return int(math.floor(query_size * 1.0 / (alpha * alpha)))
 
     def minimum_common_feature_count(self, query_size, y_size, alpha):

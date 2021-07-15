@@ -1,5 +1,6 @@
 import setuptools
 
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
@@ -24,6 +25,8 @@ setuptools.setup(
     extras_require = {
         "mongo" : ["pymongo",],
         "mecab" : ["MeCab"],
-    }
+    },
+    cmdclass = {'build_ext': build_ext},
+    ext_modules = ext_modules
 
 )

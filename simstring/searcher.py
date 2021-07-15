@@ -3,10 +3,12 @@
 from collections import defaultdict
 from operator import itemgetter
 from typing import List
+from .database import DataBase
+from .measure import Measure
 
 
 class Searcher:
-    def __init__(self, db, measure) -> None:
+    def __init__(self, db: DataBase, measure: Measure) -> None:
         self.db = db
         self.measure = measure
         self.feature_extractor = db.feature_extractor
@@ -33,7 +35,7 @@ class Searcher:
     def __min_overlap(self, query_size: int, candidate_feature_size: int, alpha: float) -> int:
         return self.measure.minimum_common_feature_count(query_size, candidate_feature_size, alpha)
     
-    def __overlap_join(self, features, tau, candidate_feature_size: int) -> List[str]:
+    def __overlap_join(self, features: List[str], tau: int, candidate_feature_size: int) -> List[str]:
         query_feature_size = len(features)
         features.sort(key=lambda x: len(self.__lookup_strings_by_feature_set_size_and_feature(candidate_feature_size, x)))
         candidate_string_to_matched_count = defaultdict(int)
@@ -55,7 +57,7 @@ class Searcher:
                     break
         return results
 
-    def __lookup_strings_by_feature_set_size_and_feature(self, feature_size, feature):
+    def __lookup_strings_by_feature_set_size_and_feature(self, feature_size: int, feature: str) -> set:
         if feature not in self.lookup_strings_result[feature_size]:
             self.lookup_strings_result[feature_size][feature] = self.db.lookup_strings_by_feature_set_size_and_feature(feature_size, feature)
         return self.lookup_strings_result[feature_size][feature]

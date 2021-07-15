@@ -6,7 +6,7 @@ from benchmarker import Benchmarker
 
 from simstring.feature_extractor.character_ngram import CharacterNgramFeatureExtractor
 from simstring.measure.cosine import CosineMeasure
-from simstring.database.mongo import MongoDatabase
+# from simstring.database.mongo import MongoDatabase
 from simstring.database.dict import DictDatabase
 from simstring.searcher import Searcher
 
@@ -36,5 +36,5 @@ def output_similar_strings_of_each_line(path, Database):
 
 print('benchmark for using dict as database')
 output_similar_strings_of_each_line('./dev/data/company_names.txt', DictDatabase)
-print('benchmark for using Mongo as database')
-output_similar_strings_of_each_line('./dev/data/company_names.txt', MongoDatabase)
+# print('benchmark for using Mongo as database')
+# output_similar_strings_of_each_line('./dev/data/company_names.txt', MongoDatabase)
