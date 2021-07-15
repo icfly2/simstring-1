@@ -26,7 +26,5 @@ setuptools.setup(
         "mongo" : ["pymongo",],
         "mecab" : ["MeCab"],
     },
-    cmdclass = {'build_ext': build_ext},
-    ext_modules = ext_modules
 
 )
